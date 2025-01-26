@@ -1,0 +1,61 @@
+name: 构建到 gh-pages 分支
+
+on:
+  push: 
+    branches: 
+      - main
+  workflow_dispatch:
+
+# 设置 GITHUB_TOKEN 的权限，以允许部署到 GitHub Pages
+permissions:
+  contents: write
+  id-token: write
+  pages: write
+
+# 仅允许一个并发部署，跳过在进行中的运行与最新排队的运行之间排队的运行。
+# 但是，请不要取消进行中的运行，因为我们希望这些生产部署能够完成。
+concurrency:
+  group: 'pages'
+  cancel-in-progress: false
+
+# 默认使用 bash
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: 设置 pnpm
+        uses: pnpm/action-setup@v4
+      
+      - name: 设置 node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: 安装依赖
+        run: pnpm install --frozen-lockfile
+
+      - name: 构建 VuePress 站点
+        run: pnpm docs:build
+        
+      - name: 列出构建输出目录内容
+        run: ls -la ./
+        
+      # 使用 peaceiris/actions-gh-pages 明确指定目标分支
+      - name: 部署到 gh-pages 分支
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: docs/.vuepress/dist
+          commit_message: 'Build and deploy to gh-pages'
+          publish_branch: gh-pages

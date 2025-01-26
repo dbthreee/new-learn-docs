@@ -1,4 +1,6 @@
-const site = {
+import { SiteData } from 'vuepress';
+
+const _SiteData: SiteData = {
   base: '/', // 部署站点的基础路径
   lang: 'zh-CN', // 站点的语言
   title: '学习记录', // 站点的标题
@@ -7,4 +9,4 @@ const site = {
   locales: {},
 };
 
-export default site;
+export default _SiteData;

@@ -1,15 +1,23 @@
-import navbar from './navbar/navbar'
-import sidebar from './sidebar/sidebar';
+import { defaultTheme } from '@vuepress/theme-default';
+import { DefaultThemeLocaleData } from '@vuepress/theme-default';
 
-const locale = {
+const base = {
+  hostname: 'https://dbthreee.github.io/new-learn-docs', // 部署的域名
+  // locales: {}, // 多语言支持的各个语言 locales
+};
+
+import navbar from './navbar';
+import sidebar from './sidebar';
+
+const locale: DefaultThemeLocaleData = {
   colorMode: 'auto', // 默认颜色模式
   colorModeSwitch: true, // 是否启用切换颜色模式的功能
   externalLinkIcon: true, // 是否在外部链接上显示外部链接图标
-  home: '/', // 首页的路径, 导航栏中 Logo 的链接, 404 页面的 返回首页 链接
+  home: '/default/', // 首页的路径, 导航栏中 Logo 的链接, 404 页面的 返回首页 链接
   navbar: navbar, // 导航栏配置。设置为 false 可以禁用导航栏
   logo: '/images/dog-fish.png', // 文件路径, Lo/go 图片的 URL, Logo 图片将会显示在导航栏的左端
   logoDark: '/images/dog-fish.png', // 在夜间模式中使用的 Logo 图片的 URL
-  logoAlt: null, // 指定 Logo 图片的替代文字, 当未指定时，将默认与站点标题相同
+  logoAlt: '🐕', // 指定 Logo 图片的替代文字, 当未指定时，将默认与站点标题相同
   repo: 'https://github.com/dbthreee/new-learn-docs', // 项目仓库的 URL
   sidebar: sidebar, // 侧边栏配置
   sidebarDepth: 3, // 设置根据页面标题自动生成的侧边栏的最大深度
@@ -22,4 +30,9 @@ const locale = {
   contributors: true, // 是否启用 贡献者列表
 };
 
-export default locale;
+const default_theme_config = defaultTheme({
+  ...base,
+  ...locale,
+});
+
+export default default_theme_config;

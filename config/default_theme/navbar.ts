@@ -30,5 +30,5 @@ const navbar: NavbarOptions = [navbar_default];
 
 // export default navbar;
 
-import temp_n from '../../data/navbar'
-export default temp_n
+import temp_n from '../../data/navbar';
+export default temp_n;

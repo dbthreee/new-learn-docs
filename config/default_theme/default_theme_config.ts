@@ -28,6 +28,11 @@ const locale: DefaultThemeLocaleData = {
   docsDir: '', // 文档源文件存放在仓库中的目录名, 它将会用于生成 编辑此页 的链接
   lastUpdated: true, // 是否启用 最近更新时间戳
   contributors: true, // 是否启用 贡献者列表
+  editLinkText: '在 GitHub 上编辑此页',
+  lastUpdatedText: '上次更新',
+  contributorsText: '贡献者',
+  toggleColorMode: '切换颜色模式',
+  toggleSidebar: '切换侧边栏',
 };
 
 const default_theme_config = defaultTheme({

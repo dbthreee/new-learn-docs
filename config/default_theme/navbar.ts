@@ -28,4 +28,7 @@ const navbar_default: NavbarGroupOptions = {
 
 const navbar: NavbarOptions = [navbar_default];
 
-export default navbar;
+// export default navbar;
+
+import temp_n from '../../data/navbar'
+export default temp_n

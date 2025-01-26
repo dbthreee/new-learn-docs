@@ -34,4 +34,7 @@ const sidebar_default_tools: SidebarItemOptions = {
 
 const sidebar: SidebarArrayOptions = [sidebar_default, sidebar_default_tools];
 
-export default sidebar;
+// export default sidebar;
+
+import temp_s from '../../data/sidebar';
+export default temp_s;
